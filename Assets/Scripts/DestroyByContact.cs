@@ -28,7 +28,8 @@ public class DestroyByContact : MonoBehaviour {
 		Instantiate(asteroidExplosion, transform.position, transform.rotation);
 		if (other.tag == "Player") {
 			Instantiate (playerExplosion, other.transform.position, other.transform.rotation);
-			//GameController.GameOver ();
+
+            gameController.GameOver();
 		}
 
         gameController.AddScore(scoreValue);
