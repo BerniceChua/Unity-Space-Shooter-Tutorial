@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DestroyByContact : MonoBehaviour {
 
-	public GameObject asteroidExplosion;
+	public GameObject explosion;
 	public GameObject playerExplosion;
 
     public int scoreValue;
@@ -21,13 +21,18 @@ public class DestroyByContact : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider other) {
-		if (other.tag == "Invisible Boundary") {
-			return;
+        // if (other.tag == "Invisible Boundary" || other.tag == "Enemy") {
+        if (other.CompareTag("Invisible Boundary") || other.CompareTag("Enemy") ) {
+            return;
 		}
 
-		Instantiate(asteroidExplosion, transform.position, transform.rotation);
-		if (other.tag == "Player") {
-			Instantiate (playerExplosion, other.transform.position, other.transform.rotation);
+        if (explosion != null) {
+            Instantiate(explosion, transform.position, transform.rotation);
+        }
+
+        // if (other.tag == "Player") {
+        if (other.CompareTag("Player") ) {
+            Instantiate (playerExplosion, other.transform.position, other.transform.rotation);
 
             gameController.GameOver();
 		}
